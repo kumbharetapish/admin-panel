@@ -1,0 +1,100 @@
+.topbarWrapper {
+  width: 100%;
+  height: 100px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #567086;
+  text-align: center;
+  position: -webkit-sticky;
+}
+.topbar {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logoWrapper {
+  width: 20%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoWrapper h2 {
+  font-size: 25px;
+  font-weight: 500;
+}
+.statusWrapper {
+  width: 20%;
+  float: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.statusWrapper a {
+  font-size: 15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.statusWrapper a:hover {
+  color: #f5a623;
+}
+.logoWrapper > a {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 100;
+  text-decoration: none;
+}
+.logoWrapper > a:hover {
+  color: #f5a623;
+}
+.navWrapper {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navWrapper .navLink {
+  width: 20%;
+  height: 100px;
+  color: #fff;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.navLinkClick {
+  color: #fff;
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  flex-direction: column;
+  text-decoration: none;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: #f5a623;
+}
+.navLink:hover {
+  color: #f5a623;
+}
+.navWrapper a > i {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.statusWrapper {
+  width: 30%;
+}
