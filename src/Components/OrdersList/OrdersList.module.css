@@ -1,0 +1,55 @@
+.tableScroll {
+  width: 90%;
+  margin: 0 auto;
+  empty-cells: show;
+  border-spacing: 0;
+  color: #fdfdfd;
+}
+
+.tableScroll thead {
+  background-color: #4e657a;
+  position: relative;
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tableScroll tbody {
+  display: block;
+  background-color: #44586b;
+  position: relative;
+  width: 100%;
+  font-size: 15px;
+  overflow-y: scroll;
+}
+
+.tableScroll tr {
+  width: 100%;
+  display: flex;
+}
+
+.tableScroll td,
+.tableScroll th {
+  flex-basis: 100%;
+  flex-grow: 2;
+  display: block;
+  padding: 1rem;
+  text-align: left;
+}
+
+/* Other options */
+
+.tableScroll.smallFirstCol td:first-child,
+.tableScroll.smallFirstCol th:first-child {
+  flex-basis: 20%;
+  flex-grow: 1;
+}
+
+.bodyHalfScreen {
+  max-height: 50vh;
+}
+
+.smallCol {
+  flex-basis: 10%;
+}

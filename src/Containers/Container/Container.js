@@ -4,11 +4,13 @@ import {
   Dashboard_Link,
   Product_Link,
   Account_Link,
-  Login_Link
+  Login_Link,
+  Add_New_Link
 } from "../../Utils/Network";
 import Dashboard from "../Dashboard/Dashboard";
 import Product from "../Products/Product";
 import Account from "../Accounts/Account";
+import AddNewProduct from "../AddNewProduct/AddNewProduct"
 import Login from "../Login/Login";
 import Topbar from "../../Components/Topbar/Topbar";
 
@@ -29,6 +31,7 @@ export class Container extends Component {
             <Route path={Product_Link} component={Product} />
             <Route path={Account_Link} component={Account} />
             <Route path={Login_Link} component={Login} />
+            <Route path={Add_New_Link} component={AddNewProduct} />
           </Switch>
         </div>
       </Router>

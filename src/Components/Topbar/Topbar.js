@@ -64,7 +64,7 @@ class Topbar extends Component {
 
           <div className={TopbarStyle.statusWrapper}>
             <Link to={Login_Link}>
-              <span> {"Admin"},</span> <strong>{"Login"} </strong>{" "}
+              <span> {"Admin"}</span> <strong>{"Login"} </strong>{" "}
             </Link>
           </div>
         </div>
