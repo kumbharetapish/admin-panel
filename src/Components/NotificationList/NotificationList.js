@@ -20,7 +20,6 @@ export class NotificationList extends Component {
       })
       .catch(Error => {
         console.log(Error);
-        alert("Wait For Process", Error);
       });
   }
   render() {
@@ -48,13 +47,7 @@ export class NotificationList extends Component {
         />
       );
     });
-    return (
-      <div className={NotificationStyle.notificationWrapper}>
-     
-
-        {list}
-      </div>
-    );
+    return <div className={NotificationStyle.notificationWrapper}>{list}</div>;
   }
 }
 

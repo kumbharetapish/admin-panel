@@ -1,6 +1,6 @@
 import Axios from "axios";
 
- const getResponse = async () => {
+const getResponse = async () => {
   let getData = await Axios.get(
     "https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json"
   )
@@ -8,7 +8,7 @@ import Axios from "axios";
       return response.data;
     })
     .catch(error => {
-      alert("Processor failed invalid outputs" + error);
+      console.log("Processor failed invalid outputs" , error);
       return Promise.reject({ error });
     });
   return Promise.resolve(getData);

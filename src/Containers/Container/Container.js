@@ -10,9 +10,10 @@ import {
 import Dashboard from "../Dashboard/Dashboard";
 import Product from "../Products/Product";
 import Account from "../Accounts/Account";
-import AddNewProduct from "../AddNewProduct/AddNewProduct"
+import AddNewProduct from "../AddNewProduct/AddNewProduct";
 import Login from "../Login/Login";
 import Topbar from "../../Components/Topbar/Topbar";
+import Footer from "../../Components/Footer/Footer";
 
 export class Container extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export class Container extends Component {
       <Router>
         <div className="container">
           <Topbar />
+          {console.log("inside Router")}
           <Switch>
             <Route exact path={Dashboard_Link} component={Dashboard} />
             <Route path={Product_Link} component={Product} />
@@ -33,6 +35,7 @@ export class Container extends Component {
             <Route path={Login_Link} component={Login} />
             <Route path={Add_New_Link} component={AddNewProduct} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     );

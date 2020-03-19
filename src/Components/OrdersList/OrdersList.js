@@ -16,9 +16,8 @@ export class OrdersList extends Component {
           OrdersData: [...response.dasbhoardPage.orders]
         });
       })
-      .catch(Error => {
-        console.log(Error);
-        alert("Wait For Process", Error);
+      .catch(error => {
+        console.log(error);
       });
   }
 

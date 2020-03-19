@@ -11,22 +11,9 @@ class Topbar extends Component {
   constructor(props) {
     super(props);
     this.myLink = React.createRef();
-    this.state = {
-      addClass: false,
-      link: [Dashboard_Link, Product_Link, Account_Link],
-      linkCSS: ""
-    };
   }
 
-  toggle = () => {
-    this.setState({ addClass: !this.state.addClass });
-  };
-
   render() {
-    const linkCSS = ["navLink"];
-    if (this.state.addClass) {
-      linkCSS.push("navLinkClick");
-    }
     return (
       <div className={TopbarStyle.topbarWrapper}>
         <div className={TopbarStyle.topbar}>
@@ -37,25 +24,35 @@ class Topbar extends Component {
           </div>
           <div className={TopbarStyle.navWrapper}>
             <Link
-              onClick={this.toggle}
               to={Dashboard_Link}
-              className={TopbarStyle.navLink}
+              className={
+                window.location.pathname === Dashboard_Link
+                  ? TopbarStyle.navLinkClick
+                  : TopbarStyle.navLink
+              }
             >
               <i className="fas fa-tachometer-alt"></i>
               <samp>{"Dashboard"}</samp>
             </Link>
             <Link
-               onClick={this.toggle}
-               to={Product_Link}
-               className={TopbarStyle.navLink}
+              to={Product_Link}
+              className={
+                window.location.pathname === Product_Link
+                  ? TopbarStyle.navLinkClick
+                  : TopbarStyle.navLink
+              }
             >
               <i className="fas fa-shopping-cart"></i>
               <samp> {"Product"} </samp>
             </Link>
+
             <Link
-              onClick={this.toggle}
               to={Account_Link}
-              className={TopbarStyle.navLink}
+              className={
+                window.location.pathname === Account_Link
+                  ? TopbarStyle.navLinkClick
+                  : TopbarStyle.navLink
+              }
             >
               <i className="fas fa-user"></i>
               <samp>{"Account"} </samp>

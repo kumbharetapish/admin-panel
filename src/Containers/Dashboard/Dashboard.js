@@ -4,6 +4,9 @@ import NotificationList from "../../Components/NotificationList/NotificationList
 import { connect } from "react-redux";
 import OrdersList from "../../Components/OrdersList/OrdersList";
 import LatestHits from "../../Components/LatestHits/LatestHits";
+import Performance from "../../Components/Performance/Performance"
+import LineChart from "../../Components/LineChart/LineChart";
+import Storage from "../../Components/Storage/Store"
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -18,30 +21,39 @@ export class Dashboard extends Component {
 
   render() {
     return (
-      <div className={DashboardStyle.gridContainer}>
-        <div className={DashboardStyle.item6}>
-          <h2>Latest Hits </h2>
+      <div className={DashboardStyle.Container}>
+        <div className={DashboardStyle.headingRow}>
+          <p>
+            Welcome back, <h2>Admin</h2>{" "}
+          </p>
         </div>
-        <div className={DashboardStyle.item1}>
-          {" "}
-          <h2>Latest Hits </h2>
-          <LatestHits />
+
+        <div className={DashboardStyle.rowFirst}>
+          <div>
+            <h2>Latest Hits </h2>
+            <Performance />
+          </div>
+          <div>
+            <h2> Performance</h2>
+            <LineChart />
+          </div>
         </div>
-        <div className={DashboardStyle.item2}>
-          {" "}
-          <h2>Performance </h2>
+        <div className={DashboardStyle.rowSecond}>
+          <div>
+            <h2>Storage Information</h2>
+            <Storage />
+          </div>
+          <div>
+            <h2>Notification List</h2>
+            <NotificationList />
+          </div>
         </div>
-        <div className={DashboardStyle.item3}>
-          {" "}
-          <h2>Storage Information </h2>
-        </div>
-        <div className={DashboardStyle.item4}>
-          <h2>Notification List </h2>
-          <NotificationList />
-        </div>
-        <div className={DashboardStyle.item5}>
-          <h2>Order </h2>
-          <OrdersList />
+
+        <div className={DashboardStyle.rowThird}>
+          <div>
+            <h2>Order </h2>
+            <OrdersList />
+          </div>
         </div>
       </div>
     );

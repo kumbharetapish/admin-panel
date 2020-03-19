@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Dashboard_Link } from "../../Utils/Network";
 import * as EmailValidator from "email-validator";
+import LoginFromStyle from "./LoginFrom.module.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import getResponse from "../../Web Service/WebServices";
 import Button from "../Button/Button";
 export class LoginFrom extends Component {
   constructor(props) {
@@ -19,11 +18,6 @@ export class LoginFrom extends Component {
       username: e.target.username.value,
       password: e.target.password.value
     };
-
-    getResponse().then(response => {
-      console.log(response.accountsPage);
-    });
-
     console.log(formData);
   };
 
@@ -46,7 +40,7 @@ export class LoginFrom extends Component {
             .min(8, "Password is too short - should be 8 chars minimum.")
             .matches(
               /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-              "Password must contain a number. Should be uppercase , lowercase letter and number."
+              "Password must contain a number.Should be uppercase , lowercase letter and number."
             )
         })}
       >
@@ -61,41 +55,69 @@ export class LoginFrom extends Component {
             handleSubmit
           } = props;
           return (
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="email">Email</label>
-              <input
-                name="email"
-                type="text"
-                placeholder="Enter your email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.email && touched.email && "error"}
-                required
-              />
-              {errors.email && touched.email && (
-                <div className="input-feedback">{errors.email}</div>
-              )}
-              <label htmlFor="email">Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={errors.password && touched.password && "error"}
-                required
-              />
-              {errors.password && touched.password && (
-                <div className="input-feedback">{errors.password} </div>
-              )}
-              <button type="submit" disabled={isSubmitting}>
-                Login
-              </button>
+            <div className={LoginFromStyle.loginFromContainer}>
+              <div className={LoginFromStyle.headingWrapper}>
+                <h1> Welcome to Dashboard, Login</h1>
+              </div>
+              <div className={LoginFromStyle.fromWrapper}>
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="email">
+                    Email
+                    <input
+                      name="email"
+                      type="text"
+                      placeholder="Enter your email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={errors.email && touched.email && "error"}
+                      required
+                    />
+                    {errors.email && touched.email && (
+                      <p className={LoginFromStyle.inputFeedback}>
+                        {errors.email}
+                      </p>
+                    )}
+                  </label>
 
-              <Button name={"Forgot Password"} directionLink={"#"} />
-            </form>
+                  <label htmlFor="password">
+                    Password
+                    <input
+                      name="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={errors.password && touched.password && "error"}
+                      required
+                    />
+                    {errors.password && touched.password && (
+                      <p className={LoginFromStyle.inputFeedback}>
+                        {errors.password}{" "}
+                      </p>
+                    )}
+                  </label>
+
+                  <button
+                    type="submit"
+                    className={LoginFromStyle.button}
+                    disabled={isSubmitting}
+                  >
+                    Login
+                  </button>
+
+                  <button
+                    onClick={() => this.props.history.push("/")}
+                    type="submit"
+                    className={LoginFromStyle.button}
+                    disabled={isSubmitting}
+                  >
+                    Forgot your password?
+                  </button>
+                </form>
+              </div>
+            </div>
           );
         }}
       </Formik>

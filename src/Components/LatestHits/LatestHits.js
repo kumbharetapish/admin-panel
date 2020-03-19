@@ -6,19 +6,23 @@ export default class LatestHits extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      latestHitsData: {
-        labels: [],
-        datasets: []
-      },
-      options: {
-        title: {
-          fontSize: "20px",
-          display: true,
-          text: "World population per region (in millions)"
-        }
-      }
+      chartData: props.chartData
     };
   }
+
+  static defaultProps = {
+    displayTitle: true,
+    displayLegend: true,
+    legendPosition: "right",
+    location: "City"
+  };
+
+  static defaultProps = {
+    displayTitle: true,
+    displayLegend: true,
+    legendPosition: "right",
+    location: "City"
+  };
 
   componentDidMount() {
     getResponse()
@@ -61,7 +65,17 @@ export default class LatestHits extends Component {
         <Line
           className={LatestHits.cart}
           data={this.state.latestHitsData}
-          options={{ maintainAspectRatio: true }}
+          options={{
+            showLines:true,
+            title: {
+              display: this.props.displayTitle,
+              fontSize: 25
+            },
+            legend: {
+              display: this.props.displayLegend,
+              position: this.props.legendPosition
+            }
+          }}
         />
       </div>
     );

@@ -5,7 +5,7 @@ import TableBody from "../../Components/ProductList/TableBody";
 import { Link } from "react-router-dom";
 import ProductCategories from "../../Components/ProductCategories/ProductCategories";
 import ProductStyle from "./Product.module.css";
-import { Add_Product_Link } from "../../Utils/Network";
+import { Add_Product_Link, Add_New_Link } from "../../Utils/Network";
 export class Product extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +15,10 @@ export class Product extends Component {
   componentDidMount() {
     getResponse()
       .then(response => {
+        localStorage.setItem(
+          "products",
+          JSON.stringify(response.productsPage.products)
+        );
         this.setState({
           products: response.productsPage.products,
           createdProduct: response.productsPage.categories
@@ -25,6 +29,8 @@ export class Product extends Component {
         console.log(err);
       });
   }
+
+  onClick = () => {};
 
   render() {
     const list = this.state.products.map(res => <TableBody listData={res} />);
@@ -38,7 +44,11 @@ export class Product extends Component {
             <ProductList>{list}</ProductList>
           </div>
 
-          <button type="submit" className={ProductStyle.button}>
+          <button
+            type="submit"
+            className={ProductStyle.button}
+            onClick={() => this.props.history.push(Add_New_Link)}
+          >
             {"Add New Product"}
           </button>
           <button type="submit" className={ProductStyle.button}>
