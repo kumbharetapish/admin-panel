@@ -10,7 +10,7 @@ class LineChart extends Component {
   }
 
   componentWillMount() {
-    this.getChartData()
+    this.getChartData();
   }
 
   getChartData() {
@@ -26,18 +26,38 @@ class LineChart extends Component {
         ],
         datasets: [
           {
-            label: "Population",
-            data: [617594, 181045, 153060, 106519, 105162, 95072],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.6)",
-              "rgba(54, 162, 235, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)",
-              "rgba(255, 159, 64, 0.6)",
-              "rgba(255, 99, 132, 0.6)"
-            ]
+            label: "Bar Dataset",
+            lineColor: "#ff3aea",
+            backgroundColor: "rgba(254, 25, 232, 0.50)",
+            type: "line",
+            data: [2594, 1045, 1360, 1519, 3162, 1072]
+          },
+
+          {
+            label: "Bar Dataset",
+            lineColor: "rgba(25, 24, 132)",
+            backgroundColor: "rgba(250, 30, 85, 0.86)",
+            type: "line",
+            data: [1574, 3443, 1234, 1519, 1051, 1523]
+          },
+          {
+            label: "Line Dataset",
+            data: [2134, 1345, 1554, 1785, 2062, 2072],
+            backgroundColor: "rgba(24, 009, 255, 0.86)",
+            lineColor: "rgba(204, 009, 255, 0.86)",
+            type: "line"
           }
+        ],
+        borderColor: [
+          "rgba(255, 99, 132,)",
+          "rgba(54, 162, 235, )",
+          "rgba(54, 162, 235,)"
+        ],
+        // fill: false,
+        backgroundColor: [
+          "rgba(255, 99, 132,)",
+          "rgba(54, 162, 235, )",
+          "rgba(54, 162, 235,)"
         ]
       }
     });

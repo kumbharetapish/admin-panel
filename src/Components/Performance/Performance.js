@@ -19,38 +19,61 @@ class Performance extends Component {
         );
         console.log(response.dasbhoardPage.performance);
 
-        const key = Object.keys(response.dasbhoardPage.performance).map(keys => {
-          return keys + " Store";
-        });
+        const key = Object.keys(response.dasbhoardPage.performance).map(
+          keys => {
+            return keys;
+          }
+        );
 
         this.setState({
           chartData: {
-            labels: key,
-            datasets: [
-              {
-                label: "Population",
-                data: dataArr,
-                backgroundColor: [
-                  "rgba(255, 99, 132)",
-                  "rgba(54, 162, 235)",
-                  "rgba(255, 206, 86)",
-                  "rgba(255, 99, 132)",
-                  "rgba(024, 162, 235)",
-                  "rgba(154, 162, 235)",
-                  "rgba(124, 102, 235)",
-                ],
-
-                options: {
-                  legend: {
-                    labels: {
-                      fontColor: "white"
+            type: "horizontalBar",
+            data: dataArr,
+            options: {
+              scales: {
+                yAxes: [
+                  {
+                    barThickness: 20,
+                    ticks: {
+                      beginAtZero: true,
+                      mirror: true
                     }
                   }
-                }
+                ]
+              },
+              responsive: true,
+              legend: {
+                display: false
+              },
+              title: {
+                display: true,
+                text: "Horizontal Bar Chart"
+              },
+              animation: {
+                duration: 1,
+                // onComplete () {
+                //   const chartInstance = this.chart;
+                //   const ctx = chartInstance.ctx;
+                //   const dataset = this.data.datasets[0];
+                //   const meta = chartInstance.controller.getDatasetMeta(0);
+            
+                //   Chart.helpers.each(meta.data.forEach((bar, index) => {
+                //     const label = this.data.labels[index];
+                //     const labelPositionX = 20;
+                //     const labelWidth = ctx.measureText(label).width + labelPositionX;
+            
+                //     ctx.textBaseline = 'middle';
+                //     ctx.textAlign = 'left';
+                //     ctx.fillStyle = '#333';
+                //     ctx.fillText(label, labelPositionX, bar._model.y);
+                //   }));
+                // }
               }
-            ]
+            }
           }
         });
+
+     
       })
       .catch(Error => {
         console.log(Error);

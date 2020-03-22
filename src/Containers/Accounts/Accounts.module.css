@@ -72,7 +72,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items:  flex-start;
+  align-items: flex-start;
   flex-direction: row;
 }
 
@@ -82,9 +82,7 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
-
 }
-
 
 .colum label {
   display: flex;
@@ -93,7 +91,6 @@
   color: #fff;
   width: 100%;
   margin-bottom: 10px;
- 
 }
 
 .colum label input,
@@ -142,7 +139,7 @@ select {
 }
 
 .previewImg {
-  width: 300px;
+  width: 200px;
   height: auto;
   background-color: darkgray;
   overflow: hidden;
@@ -156,12 +153,14 @@ select {
   top: 0;
   opacity: 0;
 }
+
 .uploadTextBtnWrapper {
   width: 100%;
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
+
 .uploadTextBtnWrapper input[type="file"] {
   background-color: azure;
   margin-top: 20px;
@@ -198,4 +197,48 @@ select {
   font-weight: 200;
   margin-bottom: 25px;
   color: #fff;
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .accountContainer {
+    width: 90%;
+  }
+
+  .fromWrapper > div {
+    flex-direction: column;
+  }
+  .colum {
+    width: calc(100% - 0px);
+  }
+}
+
+@media only screen and (min-width: 340px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .accountContainer {
+    width: 90%;
+  }
+
+  .fromContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .fromContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .uploadWrapper {
+    width: calc(100% - 40px);
+  }
+
+  .fromWrapper {
+    width: calc(100% - 60px);
+  }
+
+  .fromWrapper > div {
+    flex-direction: column;
+  }
+  .colum {
+    width: calc(100% - 0px);
+  }
 }

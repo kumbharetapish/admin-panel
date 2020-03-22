@@ -31,11 +31,11 @@ export class Dashboard extends Component {
         <div className={DashboardStyle.rowFirst}>
           <div>
             <h2>Latest Hits </h2>
-            <Performance />
+            <LineChart />
           </div>
           <div>
             <h2> Performance</h2>
-            <LineChart />
+            <Performance />
           </div>
         </div>
         <div className={DashboardStyle.rowSecond}>

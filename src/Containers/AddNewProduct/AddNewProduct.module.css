@@ -139,12 +139,12 @@ select {
   font-weight: bold;
 }
 
-.previewImgWrapper{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    text-align: center;
-    background: currentColor;
+.previewImgWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  background: currentColor;
 }
 .previewImg {
   width: auto;
@@ -194,4 +194,41 @@ select {
 .button:hover {
   background-color: transparent;
   color: #f5a623;
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .fromContainer form > div {
+    display: flex;
+    width: 100%;
+  }
+  .fromContainer form > div {
+    width: 100%;
+    flex-direction: column;
+  } 
+  .uploadWrapper {
+    width: 100%;
+  }
+
+  .fromWrapper{
+    width: 100%;
+  }
+
+}
+
+@media only screen and (min-width: 300px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .fromContainer form > div {
+    display: flex;
+    width: 100%;
+  }
+  .fromContainer form > div {
+    width: 100%;
+    flex-direction: column;
+  } 
+  .uploadWrapper {
+    width: 100%;
+  }
+
+  .fromWrapper{
+    width: 100%;
+  }
 }

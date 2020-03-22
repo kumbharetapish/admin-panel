@@ -101,3 +101,126 @@
 .statusWrapper {
   width: 30%;
 }
+
+.Sidebar {
+  display: none;
+}
+
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .navWrapper {
+    display: none;
+  }
+
+  .topbar {
+    width: 95%;
+  }
+  .logoWrapper {
+    width: 30%;
+  }
+  .statusWrapper > a {
+    display: none;
+  }
+
+  .Sidebar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+  }
+
+  .Sidebar > i {
+    width: 30px;
+    height: 10px;
+    position: relative;
+    font-size: 25px;
+    color: #fff;
+    padding: 5px;
+  }
+
+  .sideBarNavigation {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #4e657a;
+    right: 10%;
+    top: 100px;
+    justify-content: space-evenly;
+    box-shadow: 0px 1px 4px #ffffff;
+    z-index: 1;
+  }
+
+  .sideBarNavigation > a {
+    color: #fff;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sideBarNavigation > a:hover {
+    background-color: #f5a623;
+    color: #fff;
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .navWrapper {
+    display: none;
+  }
+
+  .topbar {
+    width: 100%;
+  }
+  .logoWrapper {
+    width: 40%;
+  }
+  .statusWrapper > a {
+    display: none;
+  }
+
+  .Sidebar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+  }
+
+  .Sidebar > i {
+    width: 30px;
+    height: 10px;
+    position: relative;
+    font-size: 25px;
+    color: #fff;
+    padding: 5px;
+  }
+
+  .sideBarNavigation {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: #4e657a;
+    right: 10%;
+    top: 100px;
+    justify-content: space-evenly;
+    box-shadow: 0px 1px 4px #ffffff;
+    z-index: 1;
+  }
+
+  .sideBarNavigation > a {
+    color: #fff;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+  }
+  .sideBarNavigation > a:hover {
+    background-color: #f5a623;
+    color: #fff;
+  }
+}
+

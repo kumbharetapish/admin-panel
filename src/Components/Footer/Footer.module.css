@@ -6,6 +6,8 @@
   align-items: center;
   background-color: #567086;
   flex-direction: column;
+  position: relative;
+  bottom: 0px;
 }
 
 .footerWrapper .heading {
@@ -50,8 +52,21 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
+  outline: none;
+  text-decoration: none;
 }
 
 .footerWrapper .LinkWrapper a:hover {
   color: rgb(255, 255, 255);
+  outline: none;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .footerWrapper .heading {
+    width: 40%;
+  }
+
+  .footerWrapper .LinkWrapper {
+    width: 40%;
+  }
 }

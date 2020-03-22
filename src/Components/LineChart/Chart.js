@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 class Chart extends Component {
   constructor(props) {
@@ -12,39 +12,29 @@ class Chart extends Component {
   static defaultProps = {
     displayTitle: true,
     displayLegend: true,
-    legendPosition: "right",
+    legendPosition: "left",
     location: "City"
   };
 
   render() {
     return (
       <div className="chart">
-        {/* <Line
+        <Line
           data={this.state.chartData}
+         
           options={{
-            title: {
-              display: this.props.displayTitle,
-              text: "Largest Cities In " + this.props.location,
-              fontSize: 25
-            },
-            legend: {
-              display: this.props.displayLegend,
-              position: this.props.legendPosition
-            },
-            
-          }}
-        /> */}
-
-        <Bar
-          data={this.state.chartData}
-          options={{
+            scaleOverride: true,
+            scaleStartValue: 0,
+            scaleSteps: 10,
+            scaleStepWidth: 90,
             title: {
               display: this.props.displayTitle,
               fontSize: 25
             },
             legend: {
+              position: "top",
               display: this.props.displayLegend,
-              position: this.props.legendPosition
+              
             }
           }}
         />

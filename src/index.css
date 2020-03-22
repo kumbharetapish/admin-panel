@@ -71,22 +71,23 @@ code {
     monospace;
 }
 
-/* width */
+
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
   background: #44586b;
 }
 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #697e92;
 }
 
-/* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
   background: #a1a1a1;
 }

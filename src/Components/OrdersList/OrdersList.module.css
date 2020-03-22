@@ -63,3 +63,11 @@
 .smallCol {
   flex-basis: 10%;
 }
+
+@media only screen and (min-width: 400px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .tableScroll tbody{
+    width: 800px;
+    overflow-x: scroll;
+  }
+  
+}

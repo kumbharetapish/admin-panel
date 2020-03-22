@@ -37,7 +37,7 @@
 }
 
 .AddProduct a:hover {
-  color: #f5a623
+  color: #f5a623;
 }
 .productCategoriesWrapper::-webkit-scrollbar {
   width: 8px;
@@ -119,4 +119,27 @@
 .button:hover {
   background-color: transparent;
   color: #f5a623;
+}
+
+@media only screen and (min-width: 400px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+
+  .productContainer {
+    width: 90%;
+    flex-direction: column;
+    margin: 30px;
+  }
+
+  .productListContainer {
+    width: calc(100% - 60px);
+    height: 600px;
+  }
+
+  .productCategoriesContainer {
+    width: calc(100% - 60px);
+    margin-top: 30px;
+  }
+  .productListWrapper {
+    width: 100%;
+    height:450px;
+  }
 }

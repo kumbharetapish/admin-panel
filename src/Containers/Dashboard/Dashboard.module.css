@@ -37,6 +37,7 @@
   height: calc(100% - 40px);
   padding: 20px;
   font-size: 30px;
+  position: relative;
   box-shadow: 0px 1px 10px #00000013;
 }
 
@@ -64,6 +65,7 @@
   font-size: 30px;
   box-shadow: 0px 1px 10px #00000013;
   padding: 20px;
+  position: relative;
 }
 .rowThird {
   display: flex;
@@ -72,14 +74,69 @@
   background-color: #394f62;
   height: 400px;
   padding: 20px;
+  position: relative;
 }
 
 .headingWrapper {
   display: flex;
-
   justify-content: flex-start;
   align-items: flex-start;
 }
 .heading {
   color: rgb(255, 255, 255);
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .rowFirst,
+  .rowSecond {
+    flex-direction: column;
+    height: 1000px;
+    margin-bottom: 20px;
+  }
+
+  .rowFirst > div {
+    width: calc(100% - 40px);
+    height: calc(50% - 40px);
+    position: relative;
+    margin: 20px 0px;
+  }
+
+  .rowSecond > div {
+    width: calc(100% - 40px);
+    height: calc(50% - 40px);
+    position: relative;
+    margin: 20px 0px;
+  }
+
+  .rowThird {
+    height: calc(50% - 40px);
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
+  .rowFirst,
+  .rowSecond {
+    flex-direction: column;
+    height: 1000px;
+    margin-bottom: 20px;
+  }
+
+  .rowFirst > div {
+    width: calc(100% - 40px);
+    height: calc(50% - 40px);
+    position: relative;
+    margin: 20px 0px;
+  }
+
+  .rowSecond > div {
+    width: calc(100% - 40px);
+    height: calc(50% - 40px);
+    position: relative;
+    margin: 20px 0px;
+  }
+
+  .rowThird {
+    height: calc(50% - 40px);
+    overflow: scroll;
+  }
 }

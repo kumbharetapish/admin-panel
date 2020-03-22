@@ -1,0 +1,6 @@
+.cartWrapper {
+  display: flex;
+  padding-bottom: 20px;
+  top: -20px;
+  position: relative;
+}
