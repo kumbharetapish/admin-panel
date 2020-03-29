@@ -3,7 +3,6 @@
 }
 .tableScroll {
   width: 100%;
-
   color: #fff;
   font-size: 85%;
   margin-bottom: 0;
@@ -16,6 +15,7 @@
   width: 100%;
   font-size: 15px;
   font-weight: 500;
+  
 }
 
 .tableScroll tbody {

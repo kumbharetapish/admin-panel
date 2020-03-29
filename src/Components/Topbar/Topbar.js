@@ -7,6 +7,7 @@ import {
   Login_Link
 } from "../../Utils/Network";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 class Topbar extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,25 @@ class Topbar extends Component {
   render() {
     const dropDown = (
       <div className={TopbarStyle.sideBarNavigation}>
-        <Link to={Dashboard_Link}> Dashboard </Link>
-        <Link to={Product_Link}>Product</Link>
-        <Link to={Account_Link}>Account</Link>
+        <Link className={TopbarStyle.navBtn} to={Dashboard_Link}>
+          {" "}
+          Dashboard{" "}
+        </Link>
+        <Link className={TopbarStyle.navBtn} to={Product_Link}>
+          Product
+        </Link>
+        <Link className={TopbarStyle.navBtn} to={Account_Link}>
+          Account
+        </Link>
+        {this.props.loginStatus ? (
+          <span className={TopbarStyle.navBtn} onClick={this.props.handleLogin}>
+            {this.props.userName + " Logout"}
+          </span>
+        ) : (
+          <Link className={TopbarStyle.navBtn} to={Login_Link}>
+            <span> Login </span>
+          </Link>
+        )}
       </div>
     );
     return (
@@ -75,16 +92,37 @@ class Topbar extends Component {
 
           <div className={TopbarStyle.statusWrapper}>
             <div className={TopbarStyle.Sidebar} onClick={this.clickBar}>
-              <i class="fas fa-bars"></i>
+              <i className="fas fa-bars"></i>
               {this.state.barClick ? "" : dropDown}
             </div>
-            <Link to={Login_Link}>
-              <span> {"Admin"}</span> <strong>{"Login"} </strong>{" "}
-            </Link>
+
+            {this.props.loginStatus ? (
+              <span
+                className={TopbarStyle.logInOutBtn}
+                onClick={this.props.handleLogin}
+              >
+                {this.props.userName === undefined
+                  ? ""
+                  : this.props.userName + " Logout"}
+              </span>
+            ) : (
+              <Link className={TopbarStyle.logInOutBtn} to={Login_Link}>
+                <span> Login </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
     );
   }
 }
-export default Topbar;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleLogin: () => dispatch({ type: "LOGIN_STATUS" })
+  };
+};
+const mapStateToProps = state => {
+  return { userName: state.userName, loginStatus: state.status };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Topbar);

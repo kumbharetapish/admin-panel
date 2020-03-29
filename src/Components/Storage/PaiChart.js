@@ -10,7 +10,6 @@ class PaiChart extends Component {
   }
 
   componentWillMount() {
-   
     getResponse()
       .then(response => {
         const dataArr = Object.values(response.dasbhoardPage.storage).map(
@@ -19,9 +18,16 @@ class PaiChart extends Component {
           }
         );
 
-        const key = Object.keys(response.dasbhoardPage.storage).map(keys => {
-          return keys + " Store";
-        });
+        const key = Object.keys(response.dasbhoardPage.storage).map(
+          (keys, i) => {
+            return (
+              keys +
+              " Store" +
+              `${" ( " +
+                Object.values(response.dasbhoardPage.storage + " )")[i]}`
+            );
+          }
+        );
 
         this.setState({
           chartData: {
@@ -30,6 +36,7 @@ class PaiChart extends Component {
               {
                 label: "Population",
                 data: dataArr,
+                borderWidth: 1,
                 backgroundColor: [
                   "rgba(255, 99, 132)",
                   "rgba(54, 162, 235)",
@@ -37,13 +44,20 @@ class PaiChart extends Component {
                 ],
 
                 options: {
-                    legend: {
-                        labels: {
-                            fontColor: 'white'
-                        }
+                  legend: {
+                    position: "top",
+                    itemMaxWidth: 150,
+                    maxHeight: 40,
+                    itemWrap: true,
+                    labels: {
+                      maxHeight: 40,
+                      display: false,
+                      fontColor: "#fff",
+                      textTransform: "capitalize",
+                      backgroundColor: false
                     }
-                },
-           
+                  }
+                }
               }
             ]
           }
@@ -54,32 +68,22 @@ class PaiChart extends Component {
       });
   }
 
-  static defaultProps = {
-    displayTitle: true,
-    displayLegend: true,
-    legendPosition: "right",
-    location: "City",
-    FontColor:"white"
-  };
-
   render() {
     return (
-      <div>
-        <Pie
-          data={this.state.chartData}
-          width={250}
-          options={{
-            title: {
-              display: this.props.displayTitle,
-              fontSize: 14
-            },
-            legend: {
-              display: this.props.displayLegend,
-              position: "top"
+      <Pie
+        data={this.state.chartData}
+        options={{
+          legend: {
+            position: "top",
+            labels: {
+              display: false,
+              fontColor: "#fff",
+              textTransform: "capitalize",
+              backgroundColor: false
             }
-          }}
-        />
-      </div>
+          }
+        }}
+      />
     );
   }
 }

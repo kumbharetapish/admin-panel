@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Chart from "./Chart";
-
+import getResponse from "../../Web Service/WebServices";
 class LineChart extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       chartData: {}
@@ -10,10 +10,7 @@ class LineChart extends Component {
   }
 
   componentWillMount() {
-    this.getChartData();
-  }
-
-  getChartData() {
+    
     this.setState({
       chartData: {
         labels: [
@@ -24,6 +21,7 @@ class LineChart extends Component {
           "Cambridge",
           "New Bedford"
         ],
+        type: "line",
         datasets: [
           {
             label: "Bar Dataset",
@@ -62,6 +60,8 @@ class LineChart extends Component {
       }
     });
   }
+
+
 
   render() {
     return (

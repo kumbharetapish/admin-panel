@@ -21,7 +21,6 @@ class Chart extends Component {
       <div className="chart">
         <Line
           data={this.state.chartData}
-         
           options={{
             scaleOverride: true,
             scaleStartValue: 0,
@@ -29,12 +28,12 @@ class Chart extends Component {
             scaleStepWidth: 90,
             title: {
               display: this.props.displayTitle,
-              fontSize: 25
+              fontSize: 20,
+              color:"red"
             },
             legend: {
               position: "top",
-              display: this.props.displayLegend,
-              
+              display: this.props.displayLegend
             }
           }}
         />

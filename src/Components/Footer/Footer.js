@@ -9,11 +9,11 @@ const Footer = () => {
       </div>
 
       <div className={footerStyle.LinkWrapper}>
-        <a href="https://github.com/kumbharetapish" target="_blank">
+        <a href="https://github.com/kumbharetapish" target="gitHub">
           <i className="fab fa-github-square"></i>
         </a>
 
-        <a href="https://www.linkedin.com/in/kumbharetapish" target="_blank">
+        <a href="https://www.linkedin.com/in/kumbharetapish" target="linkedin">
           <i className="fab fa-linkedin"></i>
         </a>
 

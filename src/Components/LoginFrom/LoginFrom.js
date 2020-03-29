@@ -2,23 +2,44 @@ import React, { Component } from "react";
 import * as EmailValidator from "email-validator";
 import LoginFromStyle from "./LoginFrom.module.css";
 import { Formik } from "formik";
+import { connect } from "react-redux";
 import * as Yup from "yup";
-import Button from "../Button/Button";
+import { Dashboard_Link } from "../../Utils/Network";
+import getResponse from "../../Web Service/WebServices";
+import { Link } from "react-router-dom";
 export class LoginFrom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userDate: { username: "", password: "" }
+      userDate: { username: "", password: "" },
+      loginStatus: props.loginStatus,
+      path: Dashboard_Link,
+      userName: ""
     };
   }
 
   getFromResponse = e => {
-    e.preventDefault();
-    const formData = {
-      username: e.target.username.value,
-      password: e.target.password.value
-    };
-    console.log(formData);
+    getResponse()
+      .then(response => {
+        var user = Object.entries(response.accountsPage).filter(data => {
+          return data[1].email === e.email && data[1].password === e.password;
+        });
+        if (
+          user[0][1].email === e.email &&
+          user[0][1].password === e.password
+        ) {
+          console.log(e);
+          this.props.handleLogin(user[0][0]);
+          localStorage.setItem("userName", user[0][0]);
+          this.props.rander();
+        } else {
+          alert("Wrong Password or Invalid  Email");
+        }
+      })
+      .catch(err => {
+        alert("Wrong Password or Invalid  Email");
+        console.log(err);
+      });
   };
 
   render() {
@@ -27,7 +48,7 @@ export class LoginFrom extends Component {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            console.log("Logging in", values);
+            this.getFromResponse(values);
             setSubmitting(false);
           }, 500);
         }}
@@ -37,10 +58,10 @@ export class LoginFrom extends Component {
             .required("Required"),
           password: Yup.string()
             .required("No password provided.")
-            .min(8, "Password is too short - should be 8 chars minimum.")
+            .min(8, "Password should be 8 chars minimum.")
             .matches(
-              /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-              "Password must contain a number.Should be uppercase , lowercase letter and number."
+              /(?=.*\d)(?=.*[a-z]).{8,}/,
+              "Password must have lowercase letter and number."
             )
         })}
       >
@@ -103,6 +124,7 @@ export class LoginFrom extends Component {
                     type="submit"
                     className={LoginFromStyle.button}
                     disabled={isSubmitting}
+                    // path={Dashboard_Link}
                   >
                     Login
                   </button>
@@ -125,4 +147,14 @@ export class LoginFrom extends Component {
   }
 }
 
-export default LoginFrom;
+const mapDispatchToProps = dispatch => {
+  return {
+    handleLogin: name => dispatch({ type: "LOGIN_STATUS", username: name })
+  };
+};
+
+const mapStateToProps = state => {
+  return { loginStatus: state.status };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginFrom);

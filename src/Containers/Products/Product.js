@@ -2,41 +2,96 @@ import React, { Component } from "react";
 import getResponse from "../../Web Service/WebServices";
 import ProductList from "../../Components/ProductList/ProductList";
 import TableBody from "../../Components/ProductList/TableBody";
-import { Link } from "react-router-dom";
 import ProductCategories from "../../Components/ProductCategories/ProductCategories";
 import ProductStyle from "./Product.module.css";
-import { Add_Product_Link, Add_New_Link } from "../../Utils/Network";
+import { Add_New_Link } from "../../Utils/Network";
 export class Product extends Component {
   constructor(props) {
     super(props);
-    this.state = { products: [], createdProduct: [] };
+    this.state = {
+      valueArr: [],
+      selectObj: [],
+      products:
+        localStorage.getItem("products") === null
+          ? []
+          : JSON.parse(localStorage.getItem("products")),
+      createdProduct: []
+    };
   }
 
   componentDidMount() {
     getResponse()
       .then(response => {
-        localStorage.setItem(
-          "products",
-          JSON.stringify(response.productsPage.products)
-        );
         this.setState({
-          products: response.productsPage.products,
+          products:
+            localStorage.getItem("products") === null
+              ? response.productsPage.products
+              : JSON.parse(localStorage.getItem("products")),
           createdProduct: response.productsPage.categories
         });
-        console.log(this.state);
+
+        localStorage.setItem("products", JSON.stringify(this.state.products));
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  onClick = () => {};
+  handleSingleDelete = i => {
+    console.log(i);
+    const arrayCopy = this.state.products.filter(row => row.name !== i);
+    console.log(arrayCopy);
+    localStorage.setItem("products", JSON.stringify(arrayCopy));
+    this.setState({ products: arrayCopy });
+  };
+
+  selectMultiDelete = value => {
+    this.handleMultiDelete();
+    console.log(value);
+    let Values = [...this.state.valueArr].concat(value);
+    this.setState({ valueArr: Values });
+    console.log(this.state.valueArr);
+  };
+
+  handleMultiDelete = () => {
+    var filtered = [];
+    this.state.products.map((data, i) => {
+      if (data.name !== this.state.valueArr.indexOf(data.name)) {
+        this.state.valueArr.forEach(element => {
+          return data.name === element ? filtered.push(data) : null;
+        });
+      }
+    });
+    this.setState({ selectObj: filtered });
+    console.log(filtered);
+  };
+
+  deleteMultiRow = () => {
+    const newTable = this.state.products.filter(data => {
+      return this.state.selectObj.indexOf(data) === -1;
+    });
+
+    localStorage.setItem("products", JSON.stringify(newTable));
+    this.setState({ products: newTable });
+    console.log(newTable);
+  };
 
   render() {
-    const list = this.state.products.map(res => <TableBody listData={res} />);
-    const categories = this.state.createdProduct.map(res => (
-      <ProductCategories categoriesName={res} />
-    ));
+    const list = this.state.products.map((res, i) => {
+      return (
+        <TableBody
+          handleSelectRow={this.handleSingleDelete}
+          handleMultiDelete={this.selectMultiDelete}
+          keys={i}
+          listData={res}
+        />
+      );
+    });
+
+    const categories = this.state.createdProduct.map(res => {
+      return <ProductCategories kye={res} categoriesName={res} />;
+    });
+
     return (
       <div className={ProductStyle.productContainer}>
         <div className={ProductStyle.productListContainer}>
@@ -51,7 +106,11 @@ export class Product extends Component {
           >
             {"Add New Product"}
           </button>
-          <button type="submit" className={ProductStyle.button}>
+          <button
+            type="submit"
+            className={ProductStyle.button}
+            onClick={this.deleteMultiRow}
+          >
             {"Delete Selected Products"}
           </button>
         </div>

@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import {
   Dashboard_Link,
   Product_Link,
@@ -14,25 +19,34 @@ import AddNewProduct from "../AddNewProduct/AddNewProduct";
 import Login from "../Login/Login";
 import Topbar from "../../Components/Topbar/Topbar";
 import Footer from "../../Components/Footer/Footer";
+import { connect } from "react-redux";
 
 export class Container extends Component {
-  constructor(props) {
-    super(props);
-    console.log("constructor Container");
-  }
-
   render() {
-    console.log("Render Container");
+    console.log(this.props.loginStatus);
     return (
       <Router>
         <div className="container">
           <Topbar />
-          {console.log("inside Router")}
+
           <Switch>
-            <Route exact path={Dashboard_Link} component={Dashboard} />
+            <Route
+              exact
+              path={Dashboard_Link}
+              render={data =>
+                this.props.loginStatus ? (
+                  <Dashboard {...data} />
+                ) : (
+                  <Redirect to={Login_Link} />
+                )
+              }
+            />
             <Route path={Product_Link} component={Product} />
             <Route path={Account_Link} component={Account} />
-            <Route path={Login_Link} component={Login} />
+            <Route
+              path={Login_Link}
+              render={routeProps => <Login {...routeProps} />}
+            />
             <Route path={Add_New_Link} component={AddNewProduct} />
           </Switch>
           <Footer />
@@ -42,4 +56,8 @@ export class Container extends Component {
   }
 }
 
-export default Container;
+const mapStateToProps = state => {
+  return { count: state.counter, loginStatus: state.status };
+};
+
+export default connect(mapStateToProps)(Container);

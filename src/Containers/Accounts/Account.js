@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Add_New_Link, Product_Link } from "../../Utils/Network";
 import AccountStyle from "./Accounts.module.css";
 import getResponse from "../../Web Service/WebServices";
 class Account extends Component {
@@ -53,7 +52,6 @@ class Account extends Component {
       userAccount: this.state.userAccountArr[e.target.value],
       img: this.state.userAccountArr[e.target.value].profilePic
     });
-    console.log(this.state.userAccount);
   };
 
   handleEmailChange = e => {

@@ -93,6 +93,22 @@ select {
   box-sizing: border-box;
   padding-left: 15px;
   background-color: #54657d;
+  padding: 14px;
+}
+[type="date"] {
+  background: #fff
+    url(https://cdn4.iconfinder.com/data/icons/6x16-free-application-icons/16/Calendar.png)
+    90% 50% no-repeat;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button {
+  display: none;
 }
 
 .fromWrapper label textarea {
@@ -203,16 +219,15 @@ select {
   }
   .fromContainer form > div {
     width: 100%;
-    flex-direction: column;
-  } 
+    flex-direction: column-reverse;
+  }
   .uploadWrapper {
     width: 100%;
   }
 
-  .fromWrapper{
+  .fromWrapper {
     width: 100%;
   }
-
 }
 
 @media only screen and (min-width: 300px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -222,13 +237,13 @@ select {
   }
   .fromContainer form > div {
     width: 100%;
-    flex-direction: column;
-  } 
+    flex-direction: column-reverse;
+  }
   .uploadWrapper {
     width: 100%;
   }
 
-  .fromWrapper{
+  .fromWrapper {
     width: 100%;
   }
 }

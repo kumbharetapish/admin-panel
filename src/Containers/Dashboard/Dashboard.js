@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import DashboardStyle from "./Dashboard.module.css";
 import NotificationList from "../../Components/NotificationList/NotificationList";
-import { connect } from "react-redux";
 import OrdersList from "../../Components/OrdersList/OrdersList";
+import Performance from "../../Components/Performance/Performance";
+import Storage from "../../Components/Storage/Store";
+import { connect } from "react-redux";
 import LatestHits from "../../Components/LatestHits/LatestHits";
-import Performance from "../../Components/Performance/Performance"
-import LineChart from "../../Components/LineChart/LineChart";
-import Storage from "../../Components/Storage/Store"
+
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -24,14 +24,13 @@ export class Dashboard extends Component {
       <div className={DashboardStyle.Container}>
         <div className={DashboardStyle.headingRow}>
           <p>
-            Welcome back, <h2>Admin</h2>{" "}
+            Welcome back, <h2>{this.props.userName}</h2>
           </p>
         </div>
-
         <div className={DashboardStyle.rowFirst}>
           <div>
             <h2>Latest Hits </h2>
-            <LineChart />
+            <LatestHits />
           </div>
           <div>
             <h2> Performance</h2>
@@ -48,7 +47,6 @@ export class Dashboard extends Component {
             <NotificationList />
           </div>
         </div>
-
         <div className={DashboardStyle.rowThird}>
           <div>
             <h2>Order </h2>
@@ -60,13 +58,7 @@ export class Dashboard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    NOTIFICATION: data =>
-      dispatch({
-        type: "GET-NOTIFICATION-DATA",
-        notificationResponse: data
-      })
-  };
+const mapStateToProps = state => {
+  return { userName: state.userName, loginStatus: state.status };
 };
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

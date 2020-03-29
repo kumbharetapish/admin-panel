@@ -55,4 +55,4 @@ const mapStateToProps = state => {
   return { listData: state.notificationData };
 };
 
-export default connect(mapStateToProps)(NotificationList);
+export default NotificationList;

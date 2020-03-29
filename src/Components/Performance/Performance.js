@@ -12,71 +12,39 @@ class Performance extends Component {
   componentWillMount() {
     getResponse()
       .then(response => {
-        const dataArr = Object.values(response.dasbhoardPage.performance).map(
-          element => {
-            return element * 100;
-          }
-        );
-        console.log(response.dasbhoardPage.performance);
-
-        const key = Object.keys(response.dasbhoardPage.performance).map(
-          keys => {
-            return keys;
-          }
-        );
-
+        const dataArr = Object.values(response.dasbhoardPage.performance);
+        const dataName = Object.keys(response.dasbhoardPage.performance);
+        console.log(dataArr, dataName);
         this.setState({
           chartData: {
-            type: "horizontalBar",
-            data: dataArr,
-            options: {
-              scales: {
-                yAxes: [
-                  {
-                    barThickness: 20,
-                    ticks: {
-                      beginAtZero: true,
-                      mirror: true
-                    }
-                  }
-                ]
-              },
-              responsive: true,
-              legend: {
-                display: false
-              },
-              title: {
-                display: true,
-                text: "Horizontal Bar Chart"
-              },
-              animation: {
-                duration: 1,
-                // onComplete () {
-                //   const chartInstance = this.chart;
-                //   const ctx = chartInstance.ctx;
-                //   const dataset = this.data.datasets[0];
-                //   const meta = chartInstance.controller.getDatasetMeta(0);
-            
-                //   Chart.helpers.each(meta.data.forEach((bar, index) => {
-                //     const label = this.data.labels[index];
-                //     const labelPositionX = 20;
-                //     const labelWidth = ctx.measureText(label).width + labelPositionX;
-            
-                //     ctx.textBaseline = 'middle';
-                //     ctx.textAlign = 'left';
-                //     ctx.fillStyle = '#333';
-                //     ctx.fillText(label, labelPositionX, bar._model.y);
-                //   }));
-                // }
+            labels: dataName,
+            type: "bar",
+            datasets: [
+              {
+                label: "# Hits",
+                data: dataArr,
+                lineTension: 0.3,
+                barPercentage: 0.5,
+                barThickness: 6,
+                backgroundColor: [
+                  "#00FFFF",
+                  "#ADD8E6",
+                  "#228B22",
+                  "#FFA500",
+                  "#9932CC",
+                  "#FF6347",
+                  "#FFFF00"
+                ],
+                borderColor: "rgba(255,255,255,1)",
+                borderWidth: 0.4
               }
-            }
+            ]
           }
         });
-
-     
+        console.log(this.state.chartData);
       })
-      .catch(Error => {
-        console.log(Error);
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -85,7 +53,7 @@ class Performance extends Component {
     displayLegend: true,
     legendPosition: "right",
     location: "City",
-    FontColor: "white"
+    fontColor: "white"
   };
 
   render() {
@@ -93,15 +61,40 @@ class Performance extends Component {
       <div>
         <Bar
           data={this.state.chartData}
-          width={250}
+          // width={250}
           options={{
-            title: {
-              display: this.props.displayTitle,
-              fontSize: 14
+            scales: {
+              yAxes: [
+                {
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Hits",
+                    fontColor: "#fff"
+                  },
+                  ticks: {
+                    beginAtZero: true,
+                    min: 20,
+                    fontColor: "#fff" // this here
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  scaleLabel: {
+                    display: true
+                  },
+                  ticks: {
+                    fontColor: "#fff" // this here
+                  }
+                }
+              ]
             },
+            scaleSteps: 10,
             legend: {
-              display: this.props.displayLegend,
-              position: "top"
+              position: "top",
+              labels: {
+                fontColor: "#fff",
+              }
             }
           }}
         />

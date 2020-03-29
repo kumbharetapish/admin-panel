@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { Add_New_Link, Product_Link } from "../../Utils/Network";
 import addProduct from "./AddNewProduct.module.css";
+import { Product_Link } from "../../Utils/Network";
 
 class AddNewProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
       file: null,
-      product: []
+      product:
+        localStorage.getItem("products") !== null
+          ? JSON.parse(localStorage.getItem("products"))
+          : []
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -31,12 +34,12 @@ class AddNewProduct extends Component {
     };
 
     const product = JSON.parse(localStorage.getItem("products"));
-
-    localStorage.setItem("products", JSON.stringify(product));
     this.setState({
-      product: JSON.parse(localStorage.getItem("products"))
+      product: [...this.state.product].concat(formData)
     });
-    console.log(product);
+    localStorage.setItem("products", JSON.stringify(this.state.product));
+    this.props.history.push(Product_Link);
+    console.log(this.state.product);
   };
   render() {
     const img =
@@ -48,7 +51,7 @@ class AddNewProduct extends Component {
           </button>
         </div>
       ) : (
-        <div className= { addProduct.previewImgWrapper }>
+        <div className={addProduct.previewImgWrapper}>
           <img className={addProduct.previewImg} src={this.state.file} alt="" />
         </div>
       );
@@ -101,11 +104,17 @@ class AddNewProduct extends Component {
                 <div>
                   <label for="expireDate">
                     Expire Date
-                    <input type="date" name="expireDate" required />
+                    <input
+                      type="date"
+                      name="expireDate"
+                      placeholder="XX-XX-XXX"
+                      min="2000-01-02"
+                      required
+                    />
                   </label>
                   <label for="stockUnits">
                     Units In Stock
-                    <input type="number" name="stockUnits" required />
+                    <input type="number" name="stockUnits" min="0" required />
                   </label>
                 </div>
               </div>
