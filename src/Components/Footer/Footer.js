@@ -16,10 +16,6 @@ const Footer = () => {
         <a href="https://www.linkedin.com/in/kumbharetapish" target="linkedin">
           <i className="fab fa-linkedin"></i>
         </a>
-
-        <a href="https://www.linkedin.com/in/kumbharetapish" target="_blank">
-          <i className="fab fa-linkedin"></i>
-        </a>
       </div>
     </div>
   );

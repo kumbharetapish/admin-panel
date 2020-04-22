@@ -2,23 +2,22 @@ import React, { Component } from "react";
 import getResponse from "../../Web Service/WebServices";
 import NotificationStyle from "./Notification.module.css";
 import Cart from "../Cart/Cart";
-import { connect } from "react-redux";
 export class NotificationList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notificationData: []
+      notificationData: [],
     };
   }
 
   componentDidMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         this.setState({
-          notificationData: [...response.dasbhoardPage.notifications]
+          notificationData: [...response.dasbhoardPage.notifications],
         });
       })
-      .catch(Error => {
+      .catch((Error) => {
         console.log(Error);
       });
   }
@@ -50,9 +49,5 @@ export class NotificationList extends Component {
     return <div className={NotificationStyle.notificationWrapper}>{list}</div>;
   }
 }
-
-const mapStateToProps = state => {
-  return { listData: state.notificationData };
-};
 
 export default NotificationList;

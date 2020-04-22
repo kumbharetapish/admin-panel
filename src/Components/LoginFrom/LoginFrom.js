@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import * as EmailValidator from "email-validator";
 import LoginFromStyle from "./LoginFrom.module.css";
 import { Formik } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
 import { Dashboard_Link } from "../../Utils/Network";
 import getResponse from "../../Web Service/WebServices";
-import { Link } from "react-router-dom";
+
 export class LoginFrom extends Component {
   constructor(props) {
     super(props);

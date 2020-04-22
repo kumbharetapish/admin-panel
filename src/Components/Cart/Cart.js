@@ -1,7 +1,7 @@
 import React from "react";
 import cartStyle from "./Card.module.css";
-import promise from "redux-promise-middleware";
-const Cart = props => {
+
+const Cart = (props) => {
   return (
     <div className={cartStyle.cart}>
       <div className={cartStyle.imgWrapper}>
@@ -9,13 +9,12 @@ const Cart = props => {
       </div>
 
       <div className={cartStyle.msgWrapper}>
-       
-          <p>
-            <strong>{props.name}</strong> and <strong>{props.other} </strong>
-            {props.o} <a href="/">{props.link}</a> {props.finish}.
-          </p>
-    
-        <p className={cartStyle.msgTime} > {props.time} ago. </p>
+        <p>
+          <strong>{props.name}</strong> and <strong>{props.other} </strong>
+          {props.o} <a href="/">{props.link}</a> {props.finish}.
+        </p>
+
+        <p className={cartStyle.msgTime}> {props.time} ago. </p>
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { Pie, Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import getResponse from "../../Web Service/WebServices";
 class Performance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: {}
+      chartData: {},
     };
   }
 
   componentWillMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         const dataArr = Object.values(response.dasbhoardPage.performance);
         const dataName = Object.keys(response.dasbhoardPage.performance);
         console.log(dataArr, dataName);
@@ -33,17 +33,17 @@ class Performance extends Component {
                   "#FFA500",
                   "#9932CC",
                   "#FF6347",
-                  "#FFFF00"
+                  "#FFFF00",
                 ],
                 borderColor: "rgba(255,255,255,1)",
-                borderWidth: 0.4
-              }
-            ]
-          }
+                borderWidth: 0.4,
+              },
+            ],
+          },
         });
         console.log(this.state.chartData);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -53,7 +53,7 @@ class Performance extends Component {
     displayLegend: true,
     legendPosition: "right",
     location: "City",
-    fontColor: "white"
+    fontColor: "white",
   };
 
   render() {
@@ -69,33 +69,33 @@ class Performance extends Component {
                   scaleLabel: {
                     display: true,
                     labelString: "Hits",
-                    fontColor: "#fff"
+                    fontColor: "#fff",
                   },
                   ticks: {
                     beginAtZero: true,
                     min: 20,
-                    fontColor: "#fff" // this here
-                  }
-                }
+                    fontColor: "#fff", // this here
+                  },
+                },
               ],
               xAxes: [
                 {
                   scaleLabel: {
-                    display: true
+                    display: true,
                   },
                   ticks: {
-                    fontColor: "#fff" // this here
-                  }
-                }
-              ]
+                    fontColor: "#fff", // this here
+                  },
+                },
+              ],
             },
             scaleSteps: 10,
             legend: {
               position: "top",
               labels: {
                 fontColor: "#fff",
-              }
-            }
+              },
+            },
           }}
         />
       </div>

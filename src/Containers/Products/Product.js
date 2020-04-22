@@ -15,59 +15,55 @@ export class Product extends Component {
         localStorage.getItem("products") === null
           ? []
           : JSON.parse(localStorage.getItem("products")),
-      createdProduct: []
+      createdProduct: [],
     };
   }
 
   componentDidMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         this.setState({
           products:
             localStorage.getItem("products") === null
               ? response.productsPage.products
               : JSON.parse(localStorage.getItem("products")),
-          createdProduct: response.productsPage.categories
+          createdProduct: response.productsPage.categories,
         });
 
         localStorage.setItem("products", JSON.stringify(this.state.products));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
 
-  handleSingleDelete = i => {
-    console.log(i);
-    const arrayCopy = this.state.products.filter(row => row.name !== i);
-    console.log(arrayCopy);
+  handleSingleDelete = (i) => {
+    const arrayCopy = this.state.products.filter((row) => row.name !== i);
     localStorage.setItem("products", JSON.stringify(arrayCopy));
     this.setState({ products: arrayCopy });
   };
 
-  selectMultiDelete = value => {
+  selectMultiDelete = (value) => {
     this.handleMultiDelete();
-    console.log(value);
     let Values = [...this.state.valueArr].concat(value);
     this.setState({ valueArr: Values });
-    console.log(this.state.valueArr);
   };
 
   handleMultiDelete = () => {
     var filtered = [];
     this.state.products.map((data, i) => {
       if (data.name !== this.state.valueArr.indexOf(data.name)) {
-        this.state.valueArr.forEach(element => {
+        this.state.valueArr.forEach((element) => {
           return data.name === element ? filtered.push(data) : null;
         });
       }
+      return filtered;
     });
     this.setState({ selectObj: filtered });
-    console.log(filtered);
   };
 
   deleteMultiRow = () => {
-    const newTable = this.state.products.filter(data => {
+    const newTable = this.state.products.filter((data) => {
       return this.state.selectObj.indexOf(data) === -1;
     });
 
@@ -88,7 +84,7 @@ export class Product extends Component {
       );
     });
 
-    const categories = this.state.createdProduct.map(res => {
+    const categories = this.state.createdProduct.map((res) => {
       return <ProductCategories kye={res} categoriesName={res} />;
     });
 

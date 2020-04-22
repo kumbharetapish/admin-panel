@@ -10,18 +10,18 @@ class AddNewProduct extends Component {
       product:
         localStorage.getItem("products") !== null
           ? JSON.parse(localStorage.getItem("products"))
-          : []
+          : [],
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange = event => {
+  handleChange = (event) => {
     event.preventDefault();
     this.setState({
-      file: URL.createObjectURL(event.target.files[0])
+      file: URL.createObjectURL(event.target.files[0]),
     });
   };
 
-  handleResponseSend = e => {
+  handleResponseSend = (e) => {
     e.preventDefault();
     const formData = {
       category: e.target.category.value,
@@ -30,12 +30,11 @@ class AddNewProduct extends Component {
       name: e.target.productName.value,
       stock: e.target.stockUnits.value,
       unitSold: e.target.stockUnits.value,
-      file: this.state.file === null ? "" : this.state.file.split("blob:")[1]
+      file: this.state.file === null ? "" : this.state.file.split("blob:")[1],
     };
 
-    const product = JSON.parse(localStorage.getItem("products"));
     this.setState({
-      product: [...this.state.product].concat(formData)
+      product: [...this.state.product].concat(formData),
     });
     localStorage.setItem("products", JSON.stringify(this.state.product));
     this.props.history.push(Product_Link);
