@@ -3,14 +3,14 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import {
   Dashboard_Link,
   Product_Link,
   Account_Link,
   Login_Link,
-  Add_New_Link
+  Add_New_Link,
 } from "../../Utils/Network";
 import Dashboard from "../Dashboard/Dashboard";
 import Product from "../Products/Product";
@@ -23,7 +23,6 @@ import { connect } from "react-redux";
 
 export class Container extends Component {
   render() {
-    console.log(this.props.loginStatus);
     return (
       <Router>
         <div className="container">
@@ -33,7 +32,7 @@ export class Container extends Component {
             <Route
               exact
               path={Dashboard_Link}
-              render={data =>
+              render={(data) =>
                 this.props.loginStatus ? (
                   <Dashboard {...data} />
                 ) : (
@@ -45,7 +44,7 @@ export class Container extends Component {
             <Route path={Account_Link} component={Account} />
             <Route
               path={Login_Link}
-              render={routeProps => <Login {...routeProps} />}
+              render={(routeProps) => <Login {...routeProps} />}
             />
             <Route path={Add_New_Link} component={AddNewProduct} />
           </Switch>
@@ -56,7 +55,7 @@ export class Container extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { count: state.counter, loginStatus: state.status };
 };
 

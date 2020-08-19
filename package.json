@@ -1,5 +1,6 @@
 {
   "name": "admin-panel",
+  "homepage":"https://www.rspackaging.in",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

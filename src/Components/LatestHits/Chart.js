@@ -8,17 +8,16 @@ class Chart extends Component {
       chartData: {
         labels: [],
         type: "line",
-        datasets: []
-      }
+        datasets: [],
+      },
     };
   }
 
   componentWillMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         const dataArr = Object.values(response.dasbhoardPage.latestHits);
         const dataName = Object.keys(response.dasbhoardPage.latestHits);
-        console.log(Object.values(response.dasbhoardPage.latestHits));
         this.setState({
           chartData: {
             labels: dataArr[2],
@@ -31,7 +30,7 @@ class Chart extends Component {
                 fill: false,
                 lineTension: 0.5,
                 borderColor: "#00FFFF",
-                borderWidth: 2
+                borderWidth: 2,
               },
               {
                 label: dataName[3] + " Hits",
@@ -40,7 +39,7 @@ class Chart extends Component {
                 borderColor: "#FF6347",
                 type: "line",
                 borderWidth: 2,
-                lineTension: 0.5
+                lineTension: 0.5,
               },
               {
                 label: dataName[0],
@@ -49,15 +48,14 @@ class Chart extends Component {
                 borderColor: "#9932CC",
                 type: "line",
                 borderWidth: 2,
-                lineTension: 0.5
-              }
-            ]
+                lineTension: 0.5,
+              },
+            ],
           },
-          scaleSteps: 10
+          scaleSteps: 10,
         });
-        console.log(this.state.chartData);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -74,43 +72,43 @@ class Chart extends Component {
                   scaleLabel: {
                     display: true,
                     labelString: "Hits",
-                    fontColor: "#fff"
+                    fontColor: "#fff",
                   },
                   ticks: {
                     beginAtZero: true,
                     min: 10,
-                    fontColor: "#fff" // this here
-                  }
-                }
+                    fontColor: "#fff", // this here
+                  },
+                },
               ],
 
               xAxes: [
                 {
                   scaleLabel: {
-                    display: true
+                    display: true,
                   },
                   ticks: {
-                    fontColor: "#fff" // this here
-                  }
-                }
-              ]
+                    fontColor: "#fff", // this here
+                  },
+                },
+              ],
             },
             legend: {
               position: "top",
-         
+
               labels: {
                 display: false,
                 fontColor: "#fff",
                 textTransform: "capitalize",
-                backgroundColor: false
-              }
+                backgroundColor: false,
+              },
             },
             toolTip: {
-              enabled: false
+              enabled: false,
             },
             scaleOverride: true,
             scaleStartValue: 10,
-            scaleSteps: 10
+            scaleSteps: 10,
           }}
         />
       </div>

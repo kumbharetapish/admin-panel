@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import reducer from "./redux/reducer";
 import { createStore } from "redux";
-
+import swDev from "./swDev";
 ReactDOM.render(
   <Provider store={createStore(reducer)}>
     <App />
@@ -14,4 +13,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-serviceWorker.unregister();
+swDev();

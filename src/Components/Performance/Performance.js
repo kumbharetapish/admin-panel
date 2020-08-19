@@ -14,7 +14,6 @@ class Performance extends Component {
       .then((response) => {
         const dataArr = Object.values(response.dasbhoardPage.performance);
         const dataName = Object.keys(response.dasbhoardPage.performance);
-        console.log(dataArr, dataName);
         this.setState({
           chartData: {
             labels: dataName,
@@ -41,7 +40,6 @@ class Performance extends Component {
             ],
           },
         });
-        console.log(this.state.chartData);
       })
       .catch((err) => {
         console.log(err);

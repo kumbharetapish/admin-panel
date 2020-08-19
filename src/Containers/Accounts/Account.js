@@ -9,12 +9,12 @@ class Account extends Component {
       userAccountArr: [],
       AccountName: [],
       userAccount: {},
-      img: ""
+      img: "",
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange = event => {
+  handleChange = (event) => {
     event.preventDefault();
 
     let reader = new FileReader();
@@ -23,15 +23,13 @@ class Account extends Component {
     reader.onloadend = () => {
       this.setState({
         file: file,
-        img: reader.result
+        img: reader.result,
       });
     };
-
     reader.readAsDataURL(file);
-    console.log(this.state.img); 
   };
 
-  handleResponseSend = e => {
+  handleResponseSend = (e) => {
     e.preventDefault();
     console.log(e.target.files.value);
 
@@ -40,29 +38,29 @@ class Account extends Component {
       email: e.target.email.value,
       name: e.target.accountName.value,
       phone: e.target.phone.value,
-      profilePic: this.state.img
+      profilePic: this.state.img,
     };
 
     console.log(formData);
   };
 
-  selectAccount = e => {
+  selectAccount = (e) => {
     this.setState({
       userValue: e.target.value,
       userAccount: this.state.userAccountArr[e.target.value],
-      img: this.state.userAccountArr[e.target.value].profilePic
+      img: this.state.userAccountArr[e.target.value].profilePic,
     });
   };
 
-  handleEmailChange = e => {
+  handleEmailChange = (e) => {
     this.setState({
-      userAccount: e
+      userAccount: e,
     });
   };
 
   componentDidMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         this.setState({
           userAccountArr: Object.values(response.accountsPage),
           userAccount:
@@ -72,10 +70,10 @@ class Account extends Component {
                   parseInt(this.state.userValue)
                 ],
           AccountName: Object.keys(response.accountsPage),
-          img: Object.values(response.accountsPage)[0].profilePic
+          img: Object.values(response.accountsPage)[0].profilePic,
         });
       })
-      .catch(Error => {
+      .catch((Error) => {
         console.log(Error);
       });
   }
@@ -135,7 +133,7 @@ class Account extends Component {
                   <input
                     type="text"
                     name="accountName"
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onChange={(e) => this.handleEmailChange(e.target.value)}
                     value={this.state.userAccount.name}
                     required
                   />
@@ -145,7 +143,7 @@ class Account extends Component {
                   <input
                     type="password"
                     name="password"
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onChange={(e) => this.handleEmailChange(e.target.value)}
                     value={this.state.userAccount.password}
                     required
                   />
@@ -156,7 +154,7 @@ class Account extends Component {
                     type="tel"
                     pattern="[0-9]{10}"
                     name="phone"
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onChange={(e) => this.handleEmailChange(e.target.value)}
                     value={this.state.userAccount.phone}
                   />
                 </label>
@@ -168,7 +166,7 @@ class Account extends Component {
                   <input
                     type="email"
                     name="email"
-                    onChange={e => this.handleEmailChange(e.target.value)}
+                    onChange={(e) => this.handleEmailChange(e.target.value)}
                     value={this.state.userAccount.email}
                     required
                   />
