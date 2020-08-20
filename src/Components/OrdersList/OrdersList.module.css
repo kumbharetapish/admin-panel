@@ -46,7 +46,7 @@
   text-align: left;
   font-weight: 500;
   font-size: 14px;
-  color:white
+  color: white;
 }
 /* Other options */
 
@@ -64,10 +64,12 @@
   flex-basis: 10%;
 }
 
+.offlineMessage {
+  color: red;
+}
 @media only screen and (min-width: 400px) and (max-width: 801px) and (-webkit-min-device-pixel-ratio: 1) {
-  .tableScroll tbody{
+  .tableScroll tbody {
     width: 800px;
     overflow-x: scroll;
   }
-  
 }

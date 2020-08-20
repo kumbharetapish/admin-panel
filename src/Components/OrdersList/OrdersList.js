@@ -5,27 +5,37 @@ export class OrdersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      OrdersData: []
+      OrdersData: [],
     };
   }
 
   componentDidMount() {
     getResponse()
-      .then(response => {
+      .then((response) => {
         this.setState({
-          OrdersData: [...response.dasbhoardPage.orders]
+          offlineMode: false,
+          OrdersData: [...response.dasbhoardPage.orders],
         });
+        localStorage.setItem(
+          "ordersList",
+          JSON.stringify(response.dasbhoardPage.orders)
+        );
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
+        const ordersList = JSON.parse(localStorage.getItem("ordersList"));
+        this.setState({
+          offlineMode: true,
+          OrdersData: ordersList,
+        });
       });
   }
 
   render() {
-    const tableBody = this.state.OrdersData.map(data => {
+    const tableBody = this.state.OrdersData.map((data) => {
       return (
         <tr key={data.orderNo}>
-          <td> #{data.orderNo}</td>
+          <td>{`#${data.orderNo}`}</td>
           <td>{data.status}</td>
           <td>{data.operators}</td>
           <td>{data.location}</td>
@@ -37,6 +47,11 @@ export class OrdersList extends Component {
 
     return (
       <table className={OrderListStyle.tableScroll}>
+        {this.state.offlineMode ? (
+          <div className={OrderListStyle.offlineMessage}>
+            Connection has been lost...!
+          </div>
+        ) : null}
         <thead>
           <tr>
             <th>ORDER NO.</th>

@@ -9,6 +9,7 @@ this.addEventListener("install", (event) => {
         "/static/js/bundle.js",
         "/static/js/main.chunk.js",
         "/static/js/0.chunk.js",
+        "/static/js/1.chunk.js",
         "/index.html",
         "/",
         "/product",
@@ -18,15 +19,17 @@ this.addEventListener("install", (event) => {
   );
 });
 
-// Cache/get requests
+// Cache get requests if offline
 this.addEventListener("fetch", (event) => {
   if (!navigator.onLine) {
+    console.log(!navigator.onLine);
     event.respondWith(
       caches.match(event.request).then((response) => {
         if (response) {
-          console.log(response);
           return response;
         }
+        let requestUrl = event.request.clone();
+        return fetch(requestUrl);
       })
     );
   }

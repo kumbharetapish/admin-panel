@@ -15,7 +15,7 @@ export class Dashboard extends Component {
       performanceData: {},
       storageInfoData: {},
       orderData: {},
-      notificationData: []
+      notificationData: [],
     };
   }
 
@@ -30,7 +30,7 @@ export class Dashboard extends Component {
         <div className={DashboardStyle.rowFirst}>
           <div>
             <h2>Latest Hits </h2>
-            <LatestHits />
+            <LatestHits location="Massachusetts" legendPosition="bottom" />
           </div>
           <div>
             <h2> Performance</h2>
@@ -58,7 +58,7 @@ export class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { userName: state.userName, loginStatus: state.status };
 };
 export default connect(mapStateToProps)(Dashboard);
