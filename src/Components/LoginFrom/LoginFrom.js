@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import LoginFromStyle from "./LoginFrom.module.css";
 import { Formik } from "formik";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Yup from "yup";
+import getResponse from "../../Services/Services";
 import { Dashboard_Link } from "../../Utils/Network";
-import getResponse from "../../Web Service/WebServices";
+import LoginFromStyle from "./LoginFrom.module.css";
 
 export class LoginFrom extends Component {
   constructor(props) {
@@ -13,20 +13,17 @@ export class LoginFrom extends Component {
       userDate: { username: "", password: "" },
       loginStatus: props.loginStatus,
       path: Dashboard_Link,
-      userName: ""
+      userName: "",
     };
   }
 
-  getFromResponse = e => {
+  getFromResponse = (e) => {
     getResponse()
-      .then(response => {
-        var user = Object.entries(response.accountsPage).filter(data => {
+      .then((response) => {
+        var user = Object.entries(response.accountsPage).filter((data) => {
           return data[1].email === e.email && data[1].password === e.password;
         });
-        if (
-          user[0][1].email === e.email &&
-          user[0][1].password === e.password
-        ) {
+        if (user[0][1].email === e.email && user[0][1].password === e.password) {
           console.log(e);
           this.props.handleLogin(user[0][0]);
           localStorage.setItem("userName", user[0][0]);
@@ -35,7 +32,7 @@ export class LoginFrom extends Component {
           alert("Wrong Password or Invalid  Email");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         alert("Wrong Password or Invalid  Email");
         console.log(err);
       });
@@ -52,28 +49,16 @@ export class LoginFrom extends Component {
           }, 500);
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email()
-            .required("Required"),
+          email: Yup.string().email().required("Required"),
           password: Yup.string()
             .required("No password provided.")
             .min(8, "Password should be 8 chars minimum.")
-            .matches(
-              /(?=.*\d)(?=.*[a-z]).{8,}/,
-              "Password must have lowercase letter and number."
-            )
+            .matches(/(?=.*\d)(?=.*[a-z]).{8,}/, "Password must have lowercase letter and number."),
         })}
       >
-        {props => {
-          const {
-            values,
-            touched,
-            errors,
-            isSubmitting,
-            handleChange,
-            handleBlur,
-            handleSubmit
-          } = props;
+        {(props) => {
+          const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } =
+            props;
           return (
             <div className={LoginFromStyle.loginFromContainer}>
               <div className={LoginFromStyle.headingWrapper}>
@@ -94,9 +79,7 @@ export class LoginFrom extends Component {
                       required
                     />
                     {errors.email && touched.email && (
-                      <p className={LoginFromStyle.inputFeedback}>
-                        {errors.email}
-                      </p>
+                      <p className={LoginFromStyle.inputFeedback}>{errors.email}</p>
                     )}
                   </label>
 
@@ -113,9 +96,7 @@ export class LoginFrom extends Component {
                       required
                     />
                     {errors.password && touched.password && (
-                      <p className={LoginFromStyle.inputFeedback}>
-                        {errors.password}{" "}
-                      </p>
+                      <p className={LoginFromStyle.inputFeedback}>{errors.password} </p>
                     )}
                   </label>
 
@@ -146,13 +127,13 @@ export class LoginFrom extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    handleLogin: name => dispatch({ type: "LOGIN_STATUS", username: name })
+    handleLogin: (name) => dispatch({ type: "LOGIN_STATUS", username: name }),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { loginStatus: state.status };
 };
 

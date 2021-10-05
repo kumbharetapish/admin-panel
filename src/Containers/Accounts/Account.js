@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AccountStyle from "./Accounts.module.css";
-import getResponse from "../../Web Service/WebServices";
+import getResponse from "../../Services/Services";
 class Account extends Component {
   constructor(props) {
     super(props);
@@ -66,9 +66,7 @@ class Account extends Component {
           userAccount:
             this.state.userValue === null
               ? Object.values(response.accountsPage)[0]
-              : Object.values(response.accountsPage)[
-                  parseInt(this.state.userValue)
-                ],
+              : Object.values(response.accountsPage)[parseInt(this.state.userValue)],
           AccountName: Object.keys(response.accountsPage),
           img: Object.values(response.accountsPage)[0].profilePic,
         });
@@ -105,20 +103,14 @@ class Account extends Component {
           </label>
         </div>
 
-        <form
-          onSubmit={this.handleResponseSend}
-          className={AccountStyle.fromContainer}
-        >
+        <form onSubmit={this.handleResponseSend} className={AccountStyle.fromContainer}>
           <div className={AccountStyle.uploadWrapper}>
             <h2> Change Avatar </h2>
             <div className={AccountStyle.uploadImg}>{img}</div>
 
             <div className={AccountStyle.uploadTextBtnWrapper}>
               <input type="file" onChange={this.handleChange} name="files" />
-              <button
-                onChange={this.handleChange}
-                className={AccountStyle.button}
-              >
+              <button onChange={this.handleChange} className={AccountStyle.button}>
                 Upload New Photo
               </button>
             </div>

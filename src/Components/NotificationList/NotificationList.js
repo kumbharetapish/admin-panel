@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import getResponse from "../../Web Service/WebServices";
+import getResponse from "../../Services/Services";
 import NotificationStyle from "./Notification.module.css";
 import Cart from "../Cart/Cart";
 export class NotificationList extends Component {
@@ -35,13 +35,9 @@ export class NotificationList extends Component {
           pic={res.pic}
           link={link}
           name={msgArr.slice(0, msgArr.indexOf("and")).join(" ")}
-          other={msgArr
-            .slice(msgArr.indexOf("and") + 1, msgArr.indexOf("others") + 1)
-            .join(" ")}
+          other={msgArr.slice(msgArr.indexOf("and") + 1, msgArr.indexOf("others") + 1).join(" ")}
           finish={msgArr.slice(msgArr.indexOf("updates.") + 1).join(" ")}
-          o={msgArr
-            .slice(msgArr.indexOf("others") + 1, msgArr.indexOf("updates.") - 1)
-            .join(" ")}
+          o={msgArr.slice(msgArr.indexOf("others") + 1, msgArr.indexOf("updates.") - 1).join(" ")}
           time={res.time}
         />
       );

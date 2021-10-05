@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import getResponse from "../../Web Service/WebServices";
+import getResponse from "../../Services/Services";
 class LatestHits extends Component {
   constructor(props) {
     super();
@@ -64,18 +64,16 @@ class LatestHits extends Component {
         const dataArr = Object.values(response.dasbhoardPage.latestHits);
         const dataName = Object.keys(response.dasbhoardPage.latestHits);
         const borderColor = ["#00FFFF", "#FF6347", "#9932CC", "#fff"];
-        const datasets = Object.values(response.dasbhoardPage.latestHits).map(
-          (el, i) => {
-            return {
-              label: dataName[i] + " Hits",
-              data: el,
-              fill: false,
-              lineTension: 0.5,
-              borderColor: borderColor[i],
-              borderWidth: 2,
-            };
-          }
-        );
+        const datasets = Object.values(response.dasbhoardPage.latestHits).map((el, i) => {
+          return {
+            label: dataName[i] + " Hits",
+            data: el,
+            fill: false,
+            lineTension: 0.5,
+            borderColor: borderColor[i],
+            borderWidth: 2,
+          };
+        });
 
         this.setState({
           chartData: {

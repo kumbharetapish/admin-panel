@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import getResponse from "../../Web Service/WebServices";
+import getResponse from "../../Services/Services";
 import ProductList from "../../Components/ProductList/ProductList";
 import TableBody from "../../Components/ProductList/TableBody";
 import ProductCategories from "../../Components/ProductCategories/ProductCategories";
@@ -102,11 +102,7 @@ export class Product extends Component {
           >
             {"Add New Product"}
           </button>
-          <button
-            type="submit"
-            className={ProductStyle.button}
-            onClick={this.deleteMultiRow}
-          >
+          <button type="submit" className={ProductStyle.button} onClick={this.deleteMultiRow}>
             {"Delete Selected Products"}
           </button>
         </div>

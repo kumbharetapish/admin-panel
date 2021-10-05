@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import getResponse from "../../Services/Services";
 import OrderListStyle from "./OrdersList.module.css";
-import getResponse from "../../Web Service/WebServices";
 export class OrdersList extends Component {
   constructor(props) {
     super(props);
@@ -16,10 +16,7 @@ export class OrdersList extends Component {
           offlineMode: false,
           OrdersData: [...response.dasbhoardPage.orders],
         });
-        localStorage.setItem(
-          "ordersList",
-          JSON.stringify(response.dasbhoardPage.orders)
-        );
+        localStorage.setItem("ordersList", JSON.stringify(response.dasbhoardPage.orders));
       })
       .catch((error) => {
         console.log(error);
@@ -48,9 +45,7 @@ export class OrdersList extends Component {
     return (
       <table className={OrderListStyle.tableScroll}>
         {this.state.offlineMode ? (
-          <div className={OrderListStyle.offlineMessage}>
-            Connection has been lost...!
-          </div>
+          <div className={OrderListStyle.offlineMessage}>Connection has been lost...!</div>
         ) : null}
         <thead>
           <tr>

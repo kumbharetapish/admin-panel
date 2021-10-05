@@ -1,7 +1,6 @@
 import Axios from "axios";
 
-const DEFAULT_API =
-  "https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json";
+const DEFAULT_API = "https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json";
 
 const getResponse = async () => {
   let getData = await Axios.get(DEFAULT_API)
@@ -14,4 +13,5 @@ const getResponse = async () => {
     });
   return Promise.resolve(getData);
 };
+
 export default getResponse;

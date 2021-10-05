@@ -3,7 +3,7 @@ const initialState = {
     localStorage.getItem("loginStatus") === null
       ? false
       : Boolean(localStorage.getItem("loginStatus")),
-  userName: localStorage.getItem("userName")
+  userName: localStorage.getItem("userName"),
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       status: updateStatus,
-      userName: action.username
+      userName: action.username,
     };
   }
 

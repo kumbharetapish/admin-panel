@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
-import getResponse from "../../Web Service/WebServices";
+import getResponse from "../../Services/Services";
+
 class Performance extends Component {
   constructor(props) {
     super(props);
